@@ -1,0 +1,33 @@
+workflows:
+  ios-release:
+    name: iOS Release
+    max_build_duration: 60
+    environment:
+      xcode: latest
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.tykj.jyh
+      vars:
+        XCODE_PROJECT: JYH.xcodeproj
+        XCODE_SCHEME: JYH
+    scripts:
+      - name: Set build number
+        script: |
+          cd "$CM_BUILD_DIR"
+          BUILD_NUMBER="$(date +%Y%m%d%H%M)"
+          agvtool new-version -all "$BUILD_NUMBER"
+      - name: Configure code signing
+        script: |
+          cd "$CM_BUILD_DIR"
+          xcode-project use-profiles
+      - name: Build signed IPA
+        script: |
+          cd "$CM_BUILD_DIR"
+          xcode-project build-ipa \
+            --project "$CM_BUILD_DIR/$XCODE_PROJECT" \
+            --scheme "$XCODE_SCHEME" \
+            --config Release
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - build/ios/archive/*.xcarchive
+      - /tmp/xcodebuild_logs/*.log
