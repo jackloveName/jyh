@@ -27,7 +27,16 @@ workflows:
             --project "$CM_BUILD_DIR/$XCODE_PROJECT" \
             --scheme "$XCODE_SCHEME" \
             --config Release
+      - name: Rename IPA
+        script: |
+          cd "$CM_BUILD_DIR"
+          IPA_PATH="$(find build/ios/ipa -maxdepth 1 -type f -name '*.ipa' | head -n 1)"
+          if [ -z "$IPA_PATH" ]; then
+            echo "No IPA artifact was produced"
+            exit 1
+          fi
+          cp "$IPA_PATH" build/ios/ipa/jyh.ipa
     artifacts:
-      - build/ios/ipa/*.ipa
+      - build/ios/ipa/jyh.ipa
       - build/ios/archive/*.xcarchive
       - /tmp/xcodebuild_logs/*.log
