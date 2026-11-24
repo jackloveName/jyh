@@ -35,7 +35,12 @@ workflows:
             echo "No IPA artifact was produced"
             exit 1
           fi
-          cp "$IPA_PATH" build/ios/ipa/jyh.ipa
+          if [ "$(basename "$IPA_PATH")" = "jyh.ipa" ]; then
+            echo "IPA is already named jyh.ipa"
+            exit 0
+          fi
+          cp "$IPA_PATH" build/ios/ipa/jyh.ipa.tmp
+          mv -f build/ios/ipa/jyh.ipa.tmp build/ios/ipa/jyh.ipa
     artifacts:
       - build/ios/ipa/jyh.ipa
       - build/ios/archive/*.xcarchive
