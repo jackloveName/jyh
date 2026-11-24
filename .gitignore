@@ -70,6 +70,3 @@ __pycache__/
 *.py[cod]
 .venv/
 
-# Large design/reference screenshots are kept locally, not in Git
-DesignAssets/
-LaunchDesignOptions/
