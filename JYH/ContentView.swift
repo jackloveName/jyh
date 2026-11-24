@@ -1,17 +1,15 @@
 import SwiftUI
-import Playgrounds
 
 struct ContentView: View {
+    @StateObject private var store = AppStore()
+
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        RootView(store: store)
+            .environmentObject(store)
+            .tint(JYColor.primary)
     }
 }
 
 #Preview {
     ContentView()
-}
-
-#Playground {
-    _ = 1 + 2
 }

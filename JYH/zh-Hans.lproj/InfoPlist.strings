@@ -1,0 +1,4 @@
+"CFBundleDisplayName" = "金瀛花";
+"NSCameraUsageDescription" = "用于拍摄身份证、进行人脸核验及上传申请所需资料图片。";
+"NSPhotoLibraryUsageDescription" = "用于从相册选择并上传身份证或申请所需资料图片。";
+"NSPhotoLibraryAddUsageDescription" = "用于保存您主动选择或拍摄的申请资料图片。";
