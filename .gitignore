@@ -1,0 +1,75 @@
+# macOS
+.DS_Store
+._*
+.AppleDouble
+.LSOverride
+
+# Xcode user state and generated build output
+build/
+DerivedData/
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+*.xccheckout
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM
+*.dSYM.zip
+*.xcarchive
+*.xcresult
+*.xctestproducts
+*.app
+*.profraw
+*.profdata
+*.gcda
+*.gcno
+
+# Build systems and dependency caches
+Pods/
+Carthage/Build/
+Carthage/Checkouts/
+.build/
+.swiftpm/
+node_modules/
+
+# IDE and local workspace files
+.idea/
+.vscode/
+*.iml
+*.code-workspace
+local.xcconfig
+*.local.xcconfig
+
+# Signing and secrets
+*.mobileprovision
+*.provisionprofile
+*.p12
+*.p8
+*.pfx
+*.cer
+*.key
+*.csr
+*.pem
+GoogleService-Info.plist
+.env
+.env.*
+!.env.example
+
+# Logs and temporary output
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+coverage/
+TestResults/
+tmp/
+temp/
+__pycache__/
+*.py[cod]
+.venv/
+
+# Large design/reference screenshots are kept locally, not in Git
+DesignAssets/
+LaunchDesignOptions/

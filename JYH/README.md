@@ -3,7 +3,7 @@
 金瀛花是基于 SwiftUI 的资金周转 App。UI 对应 Figma 画板
 `V79nSgi1Dtw9mwL4W87Ail / APP-UI / node 1315-10445`，接口协议取自
 `/Users/kk/Documents/project3/金隆智融`。页面视觉重建自 Figma，未复用
-金隆智融项目的 UI 风格；Figma 导出的 4x UI 图保存在 `DesignAssets/`。
+金隆智融项目的 UI 风格。设计交付图仅保存在本地，不作为 App 构建资源提交。
 登录、首页、我的三个页面均按 Figma
 `终稿 Ready for dev` 的 390pt 画板重新实现，运行时图标与插画从对应
 Figma 页面区域切片后存入 `JYH/Assets.xcassets`。
