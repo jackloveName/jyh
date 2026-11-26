@@ -65,21 +65,6 @@ final class AppStore: ObservableObject {
     }
 
     var token: String { defaults.string(forKey: tokenKey) ?? "" }
-    private var usesLocalH5PreviewIfDebug: Bool {
-#if DEBUG
-        ProcessInfo.processInfo.arguments.contains("--h5-local")
-#else
-        false
-#endif
-    }
-    private var h5AccessToken: String {
-#if DEBUG
-        if usesLocalH5PreviewIfDebug && token.isEmpty {
-            return "preview"
-        }
-#endif
-        return token
-    }
     var hasRejectedBorrowApplication: Bool {
         isLoggedIn &&
         user.borrowFlag == 0 &&
@@ -173,12 +158,7 @@ final class AppStore: ObservableObject {
     }
 
     var h5BaseURL: URL {
-#if DEBUG
-        if ProcessInfo.processInfo.arguments.contains("--h5-local") {
-            return AppConfig.localH5PreviewURL
-        }
-#endif
-        return AppRemoteConfiguration(
+        AppRemoteConfiguration(
             h5DownloadUrl: h5DownloadUrl,
             serviceLink: "",
             serviceSwitch: false,
@@ -187,19 +167,19 @@ final class AppStore: ObservableObject {
     }
 
     var loanFlowURL: URL? {
-        guard isLoggedIn || (usesLocalH5PreviewIfDebug) else { return nil }
+        guard isLoggedIn else { return nil }
         return api.loanFlowURL(
             baseURL: h5BaseURL,
-            token: h5AccessToken,
+            token: token,
             routes: h5Routes
         )
     }
 
     var repaymentFlowURL: URL? {
-        guard isLoggedIn || (usesLocalH5PreviewIfDebug) else { return nil }
+        guard isLoggedIn else { return nil }
         return api.repaymentFlowURL(
             baseURL: h5BaseURL,
-            token: h5AccessToken,
+            token: token,
             routes: h5Routes
         )
     }
@@ -217,28 +197,11 @@ final class AppStore: ObservableObject {
     var profileInformationURL: URL? { h5URL(for: .profileInformation) }
 
     func h5URL(for route: H5FlowRoute) -> URL? {
-        guard isLoggedIn || (usesLocalH5PreviewIfDebug) else { return nil }
+        guard isLoggedIn else { return nil }
         return H5URLBuilder.url(
             baseURL: h5BaseURL,
             route: route,
-            token: h5AccessToken,
-            routes: h5Routes
-        )
-    }
-
-    func h5PreviewURL(for route: H5FlowRoute) -> URL? {
-        guard var components = URLComponents(url: h5BaseURL, resolvingAgainstBaseURL: false) else {
-            return nil
-        }
-        var items = components.queryItems ?? []
-        items.removeAll { $0.name == "preview" }
-        items.append(URLQueryItem(name: "preview", value: "jinyinghua"))
-        components.queryItems = items
-        guard let baseURL = components.url else { return nil }
-        return H5URLBuilder.url(
-            baseURL: baseURL,
-            route: route,
-            token: "preview",
+            token: token,
             routes: h5Routes
         )
     }

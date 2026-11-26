@@ -15,8 +15,9 @@ Figma 文案中的演示品牌“好享花”已按产品要求替换为“金�
 
 临时环境地址：
 
-- API：`https://mbhl.makcabxa02y.icu`
+- API：`https://gateway.tianyuankeji.top`
 - OSS：`https://mizhenhl.oss-cn-beijing.aliyuncs.com`
+- H5 兜底地址：`https://jyh-h5.tianyuankeji.top`
 
 应用名称、登录使用的 `appBrand`/`tempUid`、API 与 OSS 地址统一维护在
 `JYH/AppConfig.swift`。启动时会请求
@@ -85,13 +86,6 @@ iOS 不再提供原生实名、人脸和资料录入页面。身份证、人脸�
 710.24 元，末期 710.25 元，总利息 922.89 元，总还款 8,522.89 元。
 首期从当前月份前五个月开始，前 4 期显示“已还款”，第 5 期显示“待还款”，
 后续各期显示“未到期”；每期均可进入账单详情查看本金、利息及状态。
-
-Debug 构建可用本地 H5 预览进行联调，不改变正式环境的 `h5DownloadUrl`：
-
-```bash
-xcrun simctl launch <device-id> devplaceholder.AGOFCAKT.JYH \
-  --screen home --route loan --h5-local
-```
 
 登录与 H5 跳转诊断日志统一使用 `[JYH]` 前缀，在 Xcode 控制台筛选
 `[JYH]` 即可看到：

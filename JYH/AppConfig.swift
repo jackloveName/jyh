@@ -6,13 +6,7 @@ enum AppConfig {
     static let h5ConfigurationKey = "JYH_H5_CONFIG"
     static let tempUid = ""
 
-    static let apiBaseURL = URL(string: "https://mbhl.makcabxa02y.icu")!
+    static let apiBaseURL = URL(string: "https://gateway.tianyuankeji.top")!
     static let ossBaseURL = URL(string: "https://mizhenhl.oss-cn-beijing.aliyuncs.com")!
-
-    /// Used only when the remote h5DownloadUrl has not been loaded yet.
-    static let fallbackH5BaseURL = URL(string: "https://mbhl.makcabxa02y.icu")!
-
-#if DEBUG
-    static let localH5PreviewURL = URL(string: "http://127.0.0.1:8081/?preview=jinyinghua")!
-#endif
+    static let fallbackH5BaseURL = URL(string: "https://jyh-h5.tianyuankeji.top")!
 }
